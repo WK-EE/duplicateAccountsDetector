@@ -2,7 +2,7 @@ from collections import defaultdict
 
 class DuplicateAccountsDetector:
     def accounts_merge(self, accounts):
-        '''
+        """
         This function merges the duplicate accounts based on whether or not
         they share the same email. It also creates a list of the accounts
         that need to be removed from our original list of accounts.
@@ -13,7 +13,7 @@ class DuplicateAccountsDetector:
         the list of accounts merged but without the removal of the duplicate
         accounts. The second element is a list of indices of the accounts that
         need to be removed.
-        '''
+        """
 
         # In the section below, we are mapping the emails to the id, which
         # in our case is the index of the account in the list of accounts
@@ -53,21 +53,22 @@ class DuplicateAccountsDetector:
                 counter +=1
 
         # we return the list of accounts along with the indices of the
-        # to be deleted accounts
+        # accounts that need to be deleted.
         # The deletion/removal of the duplicate account is handled by
         # our class function delete_duplicate_accounts()
         return accounts, accounts_to_delete_index
 
 
     def delete_duplicate_accounts(self, accounts):
-        '''
+        """
         This function removes the duplicate accounts from the passed in list
         of accounts
         :param accounts: A list of lists that includes the accounts
         :return: A list of the accounts with the duplicate accounts removed.
         Note: The emails shared by two or more users were added to the first
         account found using that email. That still needs to be taken care of.
-        '''
+        """
+        
         accounts_to_delete = self.accounts_merge(accounts)[1]
         accounts = [i for j, i in enumerate(accounts) if j not in accounts_to_delete]
         return accounts
